@@ -1,0 +1,4 @@
+# {{ ansible_managed }}
+{% for dir in nfs_server_dir %}
+{{ dir }} {{ nfs_clients_allowed }}({{ nfs_clients_access_mode }})
+{% endfor %}

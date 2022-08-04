@@ -1,0 +1,4 @@
+- name: reload nfs-server
+  ansible.builtin.systemd:
+    name: nfs-server
+    state: reloaded

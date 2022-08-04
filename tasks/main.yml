@@ -1,0 +1,32 @@
+- name: nfs-server | Install packages
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ default_packages_to_install }}"
+
+- name: nfs-server | Enable and start nfs service
+  ansible.builtin.service:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+  with_items:
+    - nfs-server
+    - rpcbind
+
+- name: nfs-server | Create directory for export
+  ansible.builtin.file:
+    path: "{{ nfs_server_dir }}"
+    state: directory
+    mode: '0755'
+
+- name: nfs-server | Configure exports
+  ansible.builtin.template:
+    src: "exports.j2"
+    dest: "/etc/exports"
+    owner: "root"
+    group: "root"
+    mode: "0644"
+    backup: yes
+    force: yes
+  notify: reload nfs-server

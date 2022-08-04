@@ -1,0 +1,21 @@
+---
+
+extends: default
+
+rules:
+  braces:
+    min-spaces-inside: 0
+    max-spaces-inside: 1
+  commas: disable
+  comments: disable
+  comments-indentation: disable
+  document-start: disable
+  empty-lines: disable
+  indentation:
+    level: warning
+    indent-sequences: whatever
+  line-length: disable
+  trailing-spaces: disable
+  truthy:
+    allowed-values: ['true', 'false', 'yes', 'no', 'True', 'False', 'Yes', 'No', 'TRUE', 'FALSE', 'YES', 'NO']
+    check-keys: true
